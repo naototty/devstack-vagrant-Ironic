@@ -7,6 +7,7 @@
     neutron: True
     swift: False
     security_groups: False
+    accept_hostkey: True
     tempest: False
     keyring_config_dir: /home/vagrant/.local/share/python_keyring
 
@@ -41,7 +42,7 @@
       sudo: True
 
     - name: checkout devstack
-      git: "repo={{ devstack_repo }} dest=/home/vagrant/devstack version={{ version }}"
+      git: "repo={{ devstack_repo }} accept_hostkey=yes dest=/home/vagrant/devstack version={{ version }}"
 
     - name: local.conf
       template: src=templates/local.conf.j2 dest=/home/vagrant/devstack/local.conf

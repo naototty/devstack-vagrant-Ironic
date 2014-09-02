@@ -20,8 +20,10 @@ Vagrant.configure("2") do |config|
     end
     config.vm.provision :ansible do |ansible|
         ansible.host_key_checking = false
+        ## ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null', '-o ControlMaster=auto']
         ansible.playbook = "devstack.yaml"
-        ansible.verbose = "v"
+        ## ansible.verbose = "v"
+        ansible.verbose = "vvvv"
     end
     config.vm.provision :shell, :inline => "cd devstack; sudo -u vagrant env HOME=/home/vagrant ./stack.sh"
     config.vm.provision :shell, :inline => "ovs-vsctl add-port br-ex eth2"
